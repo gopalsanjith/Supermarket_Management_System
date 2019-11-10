@@ -33,10 +33,28 @@ public class ProductController {
 		return productService.getAllProducts();		
 	}
 	
-	@RequestMapping(value="/products/{pid}",method=RequestMethod.GET)
+	@RequestMapping(value="/productWithId/{pid}",method=RequestMethod.GET)
 	public ProductVo getProductById(@PathVariable int pid) throws Exception{
 		
 		return productService.getProductById(pid);
+	}
+	
+	@RequestMapping(value="/products/{pname}",method=RequestMethod.GET)
+	public ProductVo getProductByName(@PathVariable String pname) throws Exception{
+		
+		return productService.getProductByName(pname);
+	}
+	
+	@RequestMapping(value = "/deleteproduct/{id}", method = { RequestMethod.DELETE })
+	public ResponseEntity<?> deleteProduct(@PathVariable(value = "id") int productId) {
+		
+		return productService.deleteProduct(productId);
+	}
+	
+	@RequestMapping(value = "/updateproduct", method = { RequestMethod.POST})
+	public ResponseEntity<ProductVo> updateProduct(@RequestBody ProductVo productVo) {
+		
+		return productService.updateProduct(productVo);
 	}
 	
 }

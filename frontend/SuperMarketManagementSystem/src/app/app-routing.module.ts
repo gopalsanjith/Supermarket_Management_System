@@ -9,6 +9,9 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AddCashierComponent } from './add-cashier/add-cashier.component';
 import { CashierHomeComponent } from './cashier-home/cashier-home.component';
 import { AuthguardService } from './services/authguard.service';
+import { UpdateProductsComponent } from './update-products/update-products.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { UpdateProductDetailsComponent } from './update-product-details/update-product-details.component';
 
 
 const routes: Routes = [
@@ -49,6 +52,21 @@ const routes: Routes = [
   {
     path: 'admin-logout',
     component: AdminLogoutComponent,
+    canActivate:[AuthguardService]
+  },
+  {
+    path: 'updateProduct',
+    component: UpdateProductsComponent,
+    canActivate:[AuthguardService]
+  },
+  {
+    path: 'deleteProduct',
+    component: DeleteProductComponent,
+    canActivate:[AuthguardService]
+  },
+  {
+    path: 'updateProductDetails',
+    component: UpdateProductDetailsComponent,
     canActivate:[AuthguardService]
   }
   

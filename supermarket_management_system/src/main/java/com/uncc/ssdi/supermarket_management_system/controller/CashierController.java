@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,12 @@ public class CashierController {
 	@RequestMapping(value = "/addcashier", method = { RequestMethod.POST })
 	public ResponseEntity<CashierVo> addUser(@RequestBody CashierVo cashierVo) {
 		return cashierService.addCashier(cashierVo);
+	}
+	
+	@RequestMapping(value = "/deletecashier/{id}", method = { RequestMethod.DELETE })
+	public ResponseEntity<?> deleteCashier(@PathVariable(value = "id") int cashierId) {
+		
+		return cashierService.deleteCashier(cashierId);
 	}
 	
 }

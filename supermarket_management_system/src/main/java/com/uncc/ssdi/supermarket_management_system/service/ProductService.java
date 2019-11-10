@@ -14,6 +14,12 @@ public interface ProductService {
 	List<ProductVo> getAllProducts();
 
 	ProductVo getProductById(int pid);
+
+	ResponseEntity<?> deleteProduct(int productId);
+
+	ProductVo getProductByName(String pname);
+
+	ResponseEntity<ProductVo> updateProduct(ProductVo productVo);
 	
 	
 

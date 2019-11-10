@@ -56,8 +56,16 @@ constructor(public snackBar: MatSnackBar, private router: Router, public httpser
     console.log(this.product.description)
     console.log(this.product.price)
     console.log(this.product.quantity)
+    // if(this.product.name=null){
+    //   this.product.id =0;
+    // }
+    // else{
+    //   this.product.id =1;
+    // }
+    
    // console.log(this.product)
    // this.productdata.changeMessage(this.product)
+   console.log("product id : "+this.product.product_id)
    let credentials = {username: this.message.username, password: this.message.password};
 if( this.product.name!=null && this.product.description !=null && this.product.price != null && this.product.quantity != null){
 

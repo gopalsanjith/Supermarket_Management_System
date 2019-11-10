@@ -12,6 +12,8 @@ public interface CashierService {
 	List<Cashier> findAllCashiers();
 
 	ResponseEntity<CashierVo> addCashier(CashierVo cashierVo);
+
+	ResponseEntity<?> deleteCashier(int cashierId);
 	
 
 }

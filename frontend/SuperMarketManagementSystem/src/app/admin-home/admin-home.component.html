@@ -1,8 +1,44 @@
 
 <div class="topnav">
-    <a input type="button" value="Add Product" [routerLink]="['../addProduct']" class="btn"> Add Product</a>
-    <a input type="button" value="Add Cashier" [routerLink]="['../addCashier']" class="btn"> Add Cashier</a>
-    <a input type="button" value="Logout" routerLink="/admin-logout" class="btn"> Logout </a>
+  <div style="display: inline-block; text-align: center; width: 90%;">
+  <h1 style="color:whitesmoke">Supermarket Management System</h1>
+</div>
+    <div class="wrap  top-right">
+        <button class=" logout" value="Logout" routerLink="/admin-logout"> Logout </button>
+      
+     </div>
     
   </div>
-  <div class="top-left">Welcome {{message.username}}..!!</div>
+  <!-- <div class="top-left">Welcome {{message.username}}..!!</div> -->
+
+
+  <!-- 
+<div class="topnav">
+    <a input type="button" value="Add Product" [routerLink]="['../addProduct']" class="btn"> Add Product</a>
+    <a input type="button" value="Add Cashier" [routerLink]="['../addCashier']" class="btn"> Add Cashier</a>
+   
+</div> -->
+
+<div style="background-color:#dbd9d9;padding: 6px;"> 
+<div class="wrap alignButton">    
+  <button class="button button1" [routerLink]="['../addCashier']">Add Cashier</button>
+</div>
+<div class="wrap alignButton">
+    <button class="button button3" [routerLink]="['../deleteProduct']" >Delete Product</button>
+</div>
+<div class="wrap alignButton">
+    <button class="button button2" [routerLink]="['../addProduct']">Add Product </button>
+</div>
+<div class="wrap alignButton">
+    <button class="button button4" [routerLink]="['../updateProduct']">Update Product</button>
+ 
+</div> 
+<div class="wrap alignButton">
+    <button class="button button5" [routerLink]="['../deleteCashier']">Delete Cashier</button>
+
+</div>
+
+ 
+     
+    </div>
+    <div class="top-left">Welcome {{message.username}}..!!</div>

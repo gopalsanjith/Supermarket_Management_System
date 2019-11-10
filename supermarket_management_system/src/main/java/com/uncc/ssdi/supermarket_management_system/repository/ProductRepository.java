@@ -8,4 +8,5 @@ import com.uncc.ssdi.supermarket_management_system.entity.Product;
 @Repository	
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
+	public Product findByName(String name);
 }

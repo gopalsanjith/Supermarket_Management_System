@@ -7,6 +7,7 @@ import { Logindetails } from '../logindetails';
 })
 export class DataserviceService {
 
+  product_id : any
   defaultproduct : any
   username=''
   password=''
@@ -15,6 +16,10 @@ export class DataserviceService {
   private messagesource = new BehaviorSubject<any>(this.credentials)
  
   currentMessage = this.messagesource.asObservable();
+
+  private messagesourceproductid = new BehaviorSubject<any>(this.product_id)
+ 
+  currentProductid = this.messagesourceproductid.asObservable();
   
   constructor() { }
 
@@ -22,6 +27,12 @@ export class DataserviceService {
   {
     this.messagesource.next(message)
     console.log( this.messagesource.value)
+  }
+
+  changeProductid(message: any)
+  {
+    this.messagesourceproductid.next(message)
+    console.log( "id of the product: "+this.messagesourceproductid.value)
   }
   
 }

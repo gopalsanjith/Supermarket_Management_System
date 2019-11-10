@@ -43,6 +43,7 @@ checkLogin() {
 
   let credentials = {username: this.username, password: this.password};
 
+
   if(this.username != null && this.password != null){
 
     this.loginservice.authenticate(credentials, () => {
@@ -62,7 +63,6 @@ checkLogin() {
   else{
     alert("Please enter Username or Password")
   }
-
 
 }
 

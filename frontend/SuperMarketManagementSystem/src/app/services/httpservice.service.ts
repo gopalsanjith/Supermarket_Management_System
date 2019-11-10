@@ -29,27 +29,39 @@ export class HttpserviceService {
   }
 
   public getAllProducts(credentials): Observable<Product[]> {
-    let username='admin123'
-    let password='password'
-  
+   
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
     
     return this.http.get<Product[]>('api/products/all', {headers});
   }
 
-  public getProductById(pid) {
+  public deleteProduct(pid,credentials): Observable<Product[]> {
    
-    let username='admin123'
-    let password='password'
-  
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.http.get<any>('/api/product/all/'+pid, {headers})
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+    
+    return this.http.delete<Product[]>('api/deleteproduct/'+pid, {headers});
+  }
+
+  public getProductById(pid,credentials) {
+   
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+    return this.http.get<any>('/api/productWithId/'+pid, {headers})
   }
 
   public addcashier(cashier: Cashier,credentials): Observable<Cashier> {
     console.log("credentials : "+credentials.username,credentials.password)
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
     return this.http.post<any>('api/addcashier',cashier, {headers});
+  }
+
+  public updateproduct(product: Product, credentials): Observable<Product> {
+
+    console.log("credentials : "+credentials.username,credentials.password)
+    
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+   
+    return this.http.post<any>('api/updateproduct',product, {headers});
+    
   }
 
   
