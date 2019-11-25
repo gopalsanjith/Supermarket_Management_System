@@ -1,5 +1,8 @@
 package com.uncc.ssdi.supermarket_management_system.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uncc.ssdi.supermarket_management_system.entity.Cashier;
 import com.uncc.ssdi.supermarket_management_system.service.CashierService;
 import com.uncc.ssdi.supermarket_management_system.vo.CashierVo;
+import com.uncc.ssdi.supermarket_management_system.vo.TransactionsVo;
 
 @RestController
 @RequestMapping({ "/api" })
@@ -37,6 +42,23 @@ public class CashierController {
 	public ResponseEntity<?> deleteCashier(@PathVariable(value = "id") int cashierId) {
 		
 		return cashierService.deleteCashier(cashierId);
+	}
+	
+	@RequestMapping(value = "/savetranscation", method = { RequestMethod.POST })
+	public ResponseEntity<List<TransactionsVo>> saveTransaction(@RequestBody TransactionsVo[] transactionsVo) {
+		System.out.println("transactions in controller"+transactionsVo.toString());
+		return cashierService.saveTransaction(transactionsVo);
+	}
+	
+	@RequestMapping(value = "/transactions/{sdate}/{edate}", method = { RequestMethod.GET })
+	public ResponseEntity<List<TransactionsVo>> getTransactionsAsPerDate(@PathVariable String sdate, @PathVariable String edate) throws ParseException {
+		String parsedate1=sdate;  
+		String parsedate2=edate;
+		
+	    Date dateobj1=new SimpleDateFormat("dd-MM-yyyy").parse(parsedate1);  
+	    Date dateobj2=new SimpleDateFormat("dd-MM-yyyy").parse(parsedate2);  
+	    
+		return cashierService.getTransactionsAsPerDate(dateobj1,dateobj2);
 	}
 	
 }

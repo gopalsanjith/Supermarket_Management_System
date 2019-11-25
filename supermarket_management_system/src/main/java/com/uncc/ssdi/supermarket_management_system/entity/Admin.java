@@ -27,18 +27,12 @@ public class Admin {
 		
 	}
 
-
-	
-
-
 	public Admin(int amdin_id, String username, String password) {
 		super();
 		this.amdin_id = amdin_id;
 		this.username = username;
 		this.password = password;
 	}
-
-
 
 
 

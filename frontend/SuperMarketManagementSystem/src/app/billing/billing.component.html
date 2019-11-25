@@ -1,0 +1,89 @@
+<div class="split left">
+    <div [hidden]="submitted">
+        <form (ngSubmit)="onSubmit()" #myform="ngForm" >
+                <div class="container">
+                 
+                      <h1>Bill Generation</h1>
+                      <hr>
+                      <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter Product ID">
+                          </mat-form-field>
+                      <label for="Product_Name"><b>Product Name</b></label><br>
+                      <input type="text" placeholder="Product Name" name="Product_Name" required  [(ngModel)]= "product.name "> <br>
+
+                      <label for="Price"><b>Price</b></label><br>
+                      <input type="text" placeholder="Product Price" name="price" required [(ngModel)]= "product.price"><br>
+
+                      <label for="Quantity"><b>Quantity</b></label><br>
+                      <input type="text" placeholder="Product Quantity" name="quantity" required [(ngModel)]= "product.quantity" name="quantity" #quantity="ngModel">
+                      <!-- <div [hidden]="quantity.valid || quantity.pristine" class="alert alert-danger">Quantity is Required</div>--><br>
+
+                      <label for="Discount"><b>Discount</b></label><br>
+                      <input type="text" placeholder="Product Discount" name="discount" required [(ngModel)]= "product.discount" ><br>
+                     
+
+                      <div class="clearfix">
+                        <button type="button" [routerLink]="['../Cashier-home']" class="cancelbtn">Cancel</button>
+                        <button type="button" class="signupbtn" (click)="addproduct()" [disabled]="!myform.form.valid">Add </button>   
+                      </div>
+                  </div>
+                  
+               
+              </form>
+            </div>  
+   </div>
+
+
+
+
+  
+  <div class="split right">
+
+        <div>{{ today | date : 'EEEE, MMMM d, h:mm' }}</div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="product_id">
+                  <th mat-header-cell *matHeaderCellDef> Id. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.product_id}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="quantity">
+                  <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                  <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef> Price </th>
+                  <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="description">
+                  <th mat-header-cell *matHeaderCellDef> Discount </th>
+                  <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)"
+                ></tr>
+        
+              </table>
+        
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+  
+    
+  </div> 
+
+

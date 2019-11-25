@@ -41,6 +41,7 @@ export class UpdateProductDetailsComponent implements OnInit {
     let credentials = {username: this.message.username, password: this.message.password};
     this.httpservice.updateproduct(this.product,credentials).subscribe(
       data => {
+        alert("Product Updated sucessfully")
         this.router.navigate(['Admin-home'])
       console.log(data);
     },

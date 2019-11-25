@@ -66,6 +66,8 @@ export class AddCashierComponent implements OnInit {
       this.httpservice.addcashier(this.cashier,credentials).subscribe(data =>{
         this.cashier = data;
         console.log(this.cashier);
+    alert("Cashier added Sucessfully")
+        this.router.navigate(['Admin-home'])
       },
       error => alert("error while saving")
       );

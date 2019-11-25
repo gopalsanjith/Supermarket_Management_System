@@ -43,9 +43,9 @@ public class ProductServiceTest {
 		MockitoAnnotations.initMocks(this);
 		List<Product> products = new ArrayList<Product>();
 		
-		Product product1 = new Product(0, "testProductName1", "10", "testDescription1", "100");
-		Product product2 = new Product(0, "testProductName2", "20", "testDescription2", "200");
-		Product product3 = new Product(0, "testProductName3", "30" , "testDescription3", "300");
+		Product product1 = new Product(0, "testProductName1", "10", "testDescription1", "100","lb");
+		Product product2 = new Product(0, "testProductName2", "20", "testDescription2", "200","lb");
+		Product product3 = new Product(0, "testProductName3", "30" , "testDescription3", "300","lb");
 		product1.setProduct_id(1);
 		product2.setProduct_id(2);
 		product3.setProduct_id(3);
@@ -92,11 +92,11 @@ public class ProductServiceTest {
 	
 	@Test
 	public void addProductTest() throws Exception{
-		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100");
+		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100","lb");
 		ResponseEntity<ProductVo> actual = productServiceimpl.addProduct(product);
 		
-		assertNotNull(product.getName());
-		assertTrue(product.getProduct_id() == 1);
+		assertNotNull(actual.getBody().getName());
+		assertTrue(actual.getBody().getProduct_id() == 1);
 		assertEquals("testProductName1",actual.getBody().getName());
 		
 	}
@@ -104,11 +104,11 @@ public class ProductServiceTest {
 	@Test
 	public void updateProductTest() throws Exception{
 		
-		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100");
+		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100","lb");
 		ResponseEntity<ProductVo> actual = productServiceimpl.updateProduct(product);
 		
-		assertNotNull(product.getName());
-		assertTrue(product.getProduct_id() == 1);
+		assertNotNull(actual.getBody().getName());
+		assertTrue(actual.getBody().getProduct_id() == 1);
 		assertEquals("testProductName1",actual.getBody().getName());
 		
 	}

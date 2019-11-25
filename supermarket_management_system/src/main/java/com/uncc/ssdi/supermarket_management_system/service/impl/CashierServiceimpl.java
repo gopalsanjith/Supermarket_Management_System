@@ -1,23 +1,29 @@
 	package com.uncc.ssdi.supermarket_management_system.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.uncc.ssdi.supermarket_management_system.entity.Admin;
 import com.uncc.ssdi.supermarket_management_system.entity.Cashier;
+import com.uncc.ssdi.supermarket_management_system.entity.Product;
+import com.uncc.ssdi.supermarket_management_system.entity.Transactions;
 import com.uncc.ssdi.supermarket_management_system.repository.AdminRepository;
 import com.uncc.ssdi.supermarket_management_system.repository.CashierRepository;
+import com.uncc.ssdi.supermarket_management_system.repository.ProductRepository;
+import com.uncc.ssdi.supermarket_management_system.repository.TransactionsRepository;
 import com.uncc.ssdi.supermarket_management_system.service.CashierService;
 import com.uncc.ssdi.supermarket_management_system.util.ResourceNotFoundException;
 import com.uncc.ssdi.supermarket_management_system.vo.CashierVo;
+import com.uncc.ssdi.supermarket_management_system.vo.TransactionsVo;
 
 @Service
 public class CashierServiceimpl implements CashierService {
@@ -27,6 +33,12 @@ public class CashierServiceimpl implements CashierService {
 	
 	@Autowired
 	AdminRepository adminRepository ;
+	
+	@Autowired
+	ProductRepository productRepository ;
+	
+	@Autowired
+	TransactionsRepository transactionsRepository ;
 	
 //	@Autowired
 //	LoginService loginService;
@@ -115,6 +127,89 @@ public class CashierServiceimpl implements CashierService {
 
 		    return ResponseEntity.ok().build();
 	}
+
+	@Override
+	public ResponseEntity<List<TransactionsVo>> saveTransaction(TransactionsVo[] transactionsVo) {
+		
+		List<TransactionsVo> transactionVolistList = new ArrayList<TransactionsVo>();
+		
+		HttpStatus status=HttpStatus.OK;
+		
+		for (TransactionsVo transactionVo : transactionsVo) {
+			
+			System.out.println(transactionVo);
+			Product product =productRepository.getOne(transactionVo.getProduct_id());
+			
+			System.out.println("product with old details"+product);
+			transactionVo.setCashier_id(27);
+			
+			int updatedQuantity = Integer.parseInt(product.getQuantity())-transactionVo.getQuantity();
+			
+			product.setQuantity(Integer.toString(updatedQuantity));
+			
+			System.out.println("product with updated details"+product);
+			
+			productRepository.save(product);
+			
+			System.out.println("each transaction obj"+transactionVo);
+			
+			Transactions transaction = new Transactions();
+			Cashier cashier = cashierRepository.getOne(transactionVo.getCashier_id());
+			System.out.println("cashier obj"+cashier);
+			
+			transaction.setCashier(cashierRepository.getOne(transactionVo.getCashier_id()));
+			transaction.setProduct(productRepository.getOne(transactionVo.getProduct_id()));
+			//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			//System.out.println(dateFormat.format(date));
+			transaction.setDate(date);
+			transaction.setQuantity(transactionVo.getQuantity());
+			transaction.setTotal_amount(transactionVo.getTotalprice());
+			
+			transactionsRepository.save(transaction);
+			
+			//transactionsRepository.getOne()
+			transactionVo.setDate(date);
+			transactionVolistList.add(transactionVo);
+			
+		}
+		
+		
+		return ResponseEntity.status(status).body(transactionVolistList);
+	}
+
+	@Override
+	public ResponseEntity<List<TransactionsVo>> getTransactionsAsPerDate(Date sdate, Date edate) {
+		
+		List<Transactions> dbtransactionslist = transactionsRepository.findAll();
+		List<TransactionsVo> transactionsVolist = new ArrayList<TransactionsVo>();
+		
+		HttpStatus status=HttpStatus.OK;
+		
+	for (Transactions transaction : dbtransactionslist) {
+		
+		if(transaction.getDate().after(sdate) && transaction.getDate().before(edate) ||( transaction.getDate().equals(sdate) || transaction.getDate().equals(edate)) ) {
+			
+			
+			TransactionsVo transactionsVo = new TransactionsVo(); 
+			
+			transactionsVo.setCashier_id(transaction.getCashier().getCashier_id());
+			transactionsVo.setProduct_id(transaction.getProduct().getProduct_id());
+			transactionsVo.setDate(transaction.getDate());
+			transactionsVo.setQuantity(transaction.getQuantity());
+			
+			//transactionsVo.setTotalprice(transaction.totalprice);
+			
+			transactionsVolist.add(transactionsVo);
+			
+		}
+		
+	}
+		
+	return ResponseEntity.status(status).body(transactionsVolist);
+
+	}
+	
 	
 
 

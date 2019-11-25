@@ -4,6 +4,7 @@ export class Product {
     quantity : number
     description : string
     price : number
+    unit: string
     
  constructor(){
 

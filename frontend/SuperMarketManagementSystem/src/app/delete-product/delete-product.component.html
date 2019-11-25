@@ -1,6 +1,6 @@
 <div class="container">
  
-  <h1> Delete Product </h1>
+  <h1 style="text-align: center;  color: #4CAF50;"> Delete Product </h1>
   <hr>
 
     <form #myform="ngForm" (ngSubmit)="onSubmit()">
@@ -21,20 +21,20 @@
                   </div> -->
     
                   
-          <div class="form-group">
+          <!-- <div class="form-group">
                 <label for="search2">Enter the product you want to delete</label><br>
                 <input type="text" class="form-control" id="search2" placeholder="Type text here"
                 required
                 [(ngModel)]="model.search2" name="search2" >
-             </div>
+             </div> -->
     
     
        
         <!-- <button type="submit" [routerLink]="['../update-products1']">Go</button> -->
-        <button type="submit" class="btn btn-success"
+        <!-- <button type="submit" class="btn btn-success"
          [disabled]="!myform.form.valid"
          (click)=onSubmit()
-         >Go</button>
+         >Go</button> -->
       </form>
 
      
@@ -44,7 +44,7 @@
       
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!-- Checkbox Column -->
+       
         <ng-container matColumnDef="select">
           <th mat-header-cell *matHeaderCellDef>
             <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -84,6 +84,11 @@
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef> Price </th>
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="unit">
+          <th mat-header-cell *matHeaderCellDef> Unit </th>
+          <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
         </ng-container>
 
         <ng-container matColumnDef="description">

@@ -58,7 +58,7 @@ public class ProductServiceimpl implements ProductService {
 				product.setDescription(productVo.getDescription());
 				product.setPrice(productVo.getPrice());
 				product.setQuantity(productVo.getQuantity());
-				
+				product.setUnit(productVo.getUnit());
 				productRepository.save(product);
 				
 			}
@@ -83,6 +83,7 @@ public class ProductServiceimpl implements ProductService {
 			productVo.setDescription(product.getDescription());
 			productVo.setName(product.getName());
 			productVo.setPrice(product.getPrice());
+			productVo.setUnit(product.getUnit());
 			productVo.setQuantity(product.getQuantity());
 			vos.add(productVo);
 		
@@ -103,6 +104,7 @@ public class ProductServiceimpl implements ProductService {
 		productVo.setDescription(product.getDescription());
 		productVo.setName(product.getName());
 		productVo.setPrice(product.getPrice());
+		productVo.setUnit(product.getUnit());
 		productVo.setQuantity(product.getQuantity());
 		
 		return productVo;
@@ -134,6 +136,7 @@ public class ProductServiceimpl implements ProductService {
 		productVo.setDescription(product.getDescription());
 		productVo.setName(product.getName());
 		productVo.setPrice(product.getPrice());
+		productVo.setUnit(product.getUnit());
 		productVo.setQuantity(product.getQuantity());
 		
 		return productVo;
@@ -151,6 +154,7 @@ public class ProductServiceimpl implements ProductService {
 			product.setName(productVo.getName());
 			product.setDescription(productVo.getDescription());
 			product.setPrice(productVo.getPrice());
+			product.setUnit(productVo.getUnit());
 			product.setQuantity(productVo.getQuantity());
 			productRepository.save(product);
 			
@@ -168,6 +172,7 @@ public class ProductServiceimpl implements ProductService {
 			updatedproduct.setName(product.getName());
 			updatedproduct.setDescription(product.getDescription());
 			updatedproduct.setPrice(product.getPrice());
+			updatedproduct.setUnit(product.getUnit());
 			updatedproduct.setQuantity(product.getQuantity());
 			
 		} catch (Exception e) {

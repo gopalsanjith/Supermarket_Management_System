@@ -95,9 +95,9 @@ public class CashierServiceTest {
 		
 		ResponseEntity<CashierVo> actual = cashierServiceimpl.addCashier(cashier);
 		
-		assertNotNull(cashier.getName());
-		assertTrue(cashier.getCashier_id() == 1);
-		assertTrue(cashier.getAdmin_id() == 1);
+		assertNotNull(actual.getBody().getName());
+		assertTrue(actual.getBody().getCashier_id() == 1);
+		assertTrue(actual.getBody().getAdmin_id() == 1);
 		assertEquals("testUsername1",actual.getBody().getUsername());
 		
 	}

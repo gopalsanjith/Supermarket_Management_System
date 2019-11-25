@@ -70,7 +70,7 @@ public class ProductControllerTest {
 	@Test
 	public void addProductTest() throws Exception {
 		
-		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100");
+		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100","lb");
 		mockMvc.perform(post("/api/addproduct")
 				.content(JSONUtil.asJSONString(product))
 				.contentType(MediaType.APPLICATION_JSON)
@@ -81,7 +81,7 @@ public class ProductControllerTest {
 	@Test
 	public void getProductByIdTest() throws Exception{
 			
-		Product product = new Product(1, "testProductName1", "10", "testDescription1", "100");
+		Product product = new Product(1,"testProductName1", "10", "testDescription1", "100", "lb");
 		
 		product = productRepository.save(product);
 			
@@ -100,7 +100,7 @@ public class ProductControllerTest {
 	@Test
 	public void updateProductTest() throws Exception {
 		
-		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100");
+		ProductVo product = new ProductVo(1, "testProductName1", "10", "testDescription1", "100","lb");
 		mockMvc.perform(post("/api/updateproduct")
 				.content(JSONUtil.asJSONString(product))
 				.contentType(MediaType.APPLICATION_JSON)
@@ -112,7 +112,7 @@ public class ProductControllerTest {
 	@Ignore
 	public void deleteProductTest() throws Exception {
 		
-		Product product = new Product(5, "testProductName1", "10", "testDescription1", "100");
+		Product product = new Product(5, "testProductName1", "10", "testDescription1", "100","lb");
 		
 				productRepository.delete(product);
 		

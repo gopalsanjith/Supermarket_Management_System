@@ -45,6 +45,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -54,6 +55,8 @@ import { UpdateProductsComponent } from './update-products/update-products.compo
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { DeleteCashierComponent } from './delete-cashier/delete-cashier.component';
 import { UpdateProductDetailsComponent } from './update-product-details/update-product-details.component';
+import { ViewTransactionsComponent } from './view-transactions/view-transactions.component';
+import { BillingComponent } from './billing/billing.component';
 
 
 @NgModule({
@@ -70,7 +73,9 @@ import { UpdateProductDetailsComponent } from './update-product-details/update-p
     UpdateProductsComponent,
     DeleteProductComponent,
     DeleteCashierComponent,
-    UpdateProductDetailsComponent
+    UpdateProductDetailsComponent,
+    ViewTransactionsComponent,
+    BillingComponent
    
   ],
   imports: [
@@ -116,6 +121,7 @@ import { UpdateProductDetailsComponent } from './update-product-details/update-p
     MatToolbarModule,
     MatTooltipModule,
     MatSelectModule,
+    DragDropModule,
     RouterModule.forRoot([ 
 {
   path:'',

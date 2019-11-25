@@ -59,14 +59,14 @@ public class CashierRepositoryTest {
 //		admin2.setUsername("testAdminUsername2");
 //		adminRepository.save(admin2);
 		Cashier cashier1 = new Cashier(1, "testUsername1", "testname1", "test1@gmail.com", "testPassword1", "1234567890", admin1);
-//		Cashier cashier2 = new Cashier(2, "testUsername2", "testname2", "test2@gmail.com", "testPassword2", "2345678901", admin2);
+	//	Cashier cashier2 = new Cashier(2, "testUsername2", "testname2", "test2@gmail.com", "testPassword2", "2345678901", admin1);
 //		Cashier cashier3 = new Cashier(3, "testUsername3", "testname3", "test3@gmail.com", "testPassword3", "3456789012", admin2);
 //			
 		
 		Cashier result = cashierRepository.save(cashier1);
 		Assert.assertNotNull(result);
-		Optional<Cashier> cashier =cashierRepository.findByUsername("testUsername1");
-		Assert.assertNotNull(cashier);
+	//	Optional<Cashier> cashier =cashierRepository.findByUsername("testUsername1");
+	//	Assert.assertNotNull(cashier);
 		Assert.assertTrue(result.getName().equalsIgnoreCase("testname1"));
 		
 	}
@@ -91,8 +91,6 @@ public class CashierRepositoryTest {
 		Cashier cashier2 = new Cashier(2, "testUsername2", "testname2", "test2@gmail.com", "testPassword2", "2345678901", admin2);
 		Cashier cashier3 = new Cashier(3, "testUsername3", "testname3", "test3@gmail.com", "testPassword3", "3456789012", admin2);
 			
-		
-		
 		cashier2 = cashierRepository.save(cashier2);
 		cashier3 = cashierRepository.save(cashier3);
 		

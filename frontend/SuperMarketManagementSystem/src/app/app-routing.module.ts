@@ -12,6 +12,8 @@ import { AuthguardService } from './services/authguard.service';
 import { UpdateProductsComponent } from './update-products/update-products.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { UpdateProductDetailsComponent } from './update-product-details/update-product-details.component';
+import { DeleteCashierComponent } from './delete-cashier/delete-cashier.component';
+import { BillingComponent } from './billing/billing.component';
 
 
 const routes: Routes = [
@@ -65,8 +67,18 @@ const routes: Routes = [
     canActivate:[AuthguardService]
   },
   {
+    path: 'deleteCashier',
+    component: DeleteCashierComponent,
+    canActivate:[AuthguardService]
+  },
+  {
     path: 'updateProductDetails',
     component: UpdateProductDetailsComponent,
+    canActivate:[AuthguardService]
+  },
+  {
+    path: 'billingDetails',
+    component: BillingComponent,
     canActivate:[AuthguardService]
   }
   

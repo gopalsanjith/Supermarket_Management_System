@@ -64,7 +64,7 @@ constructor(public snackBar: MatSnackBar, private router: Router, public httpser
     );
   }
  
-  displayedColumns: string[] = ['select', 'product_id', 'name', 'quantity', 'price', 'description'];
+  displayedColumns: string[] = ['select', 'product_id', 'name', 'quantity', 'unit','price', 'description'];
   dataSource: MatTableDataSource<Product>;
   selection = new SelectionModel<Product>(false, []);
 

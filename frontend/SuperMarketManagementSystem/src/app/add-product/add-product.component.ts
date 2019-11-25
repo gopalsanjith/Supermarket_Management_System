@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   
   addExtraClass: boolean = false;
-  
+  unitvalues : string[] = ['lb','gallon','unit','piece']
  
 constructor(public snackBar: MatSnackBar, private router: Router, public httpservice : HttpserviceService, public dataservice : DataserviceService ) {
 
@@ -56,6 +56,7 @@ constructor(public snackBar: MatSnackBar, private router: Router, public httpser
     console.log(this.product.description)
     console.log(this.product.price)
     console.log(this.product.quantity)
+    console.log(this.product.unit)
     // if(this.product.name=null){
     //   this.product.id =0;
     // }
@@ -72,6 +73,8 @@ if( this.product.name!=null && this.product.description !=null && this.product.p
   this.httpservice.addproduct(this.product,credentials).subscribe(data =>{
     this.product = data;
     console.log(this.product);
+    alert("Product added sucessfully")
+    this.router.navigate(['Admin-home'])
   },
   error => alert("error while saving")
   );

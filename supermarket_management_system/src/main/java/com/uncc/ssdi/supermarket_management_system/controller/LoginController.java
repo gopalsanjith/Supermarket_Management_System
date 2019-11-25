@@ -20,7 +20,4 @@ public class LoginController {
 		return new User("admin successfully authenticated");
 	}
 	
-	
-
-	
 }

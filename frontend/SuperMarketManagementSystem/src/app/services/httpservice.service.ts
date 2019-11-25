@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Cashier } from '../cashier';
 import { DataserviceService } from './dataservice.service';
+import { Bill } from '../bill';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,11 +36,25 @@ export class HttpserviceService {
     return this.http.get<Product[]>('api/products/all', {headers});
   }
 
+  public getAllCashiers(credentials): Observable<Cashier[]> {
+   
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+    
+    return this.http.get<Cashier[]>('api/cashierdetails', {headers});
+  }
+
   public deleteProduct(pid,credentials): Observable<Product[]> {
    
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
     
     return this.http.delete<Product[]>('api/deleteproduct/'+pid, {headers});
+  }
+
+  public deleteCashier(cid,credentials): Observable<Cashier[]> {
+   
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+    
+    return this.http.delete<Cashier[]>('api/deletecashier/'+cid, {headers});
   }
 
   public getProductById(pid,credentials) {
@@ -54,15 +69,25 @@ export class HttpserviceService {
     return this.http.post<any>('api/addcashier',cashier, {headers});
   }
 
-  public updateproduct(product: Product, credentials): Observable<Product> {
+    public updateproduct(product: Product, credentials): Observable<Product> {
 
     console.log("credentials : "+credentials.username,credentials.password)
     
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
    
     return this.http.post<any>('api/updateproduct',product, {headers});
-    
+
   }
+  public saveTransaction(bills: any, credentials): Observable<any> {
+
+    console.log("credentials : "+credentials.username,credentials.password)
+    
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password) });
+   console.log(bills)
+    return this.http.post<any>('api/savetranscation',bills, {headers});
+
+  }
+  
 
   
 }

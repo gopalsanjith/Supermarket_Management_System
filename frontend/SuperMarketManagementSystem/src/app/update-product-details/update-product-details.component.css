@@ -108,3 +108,7 @@ hr {
      width: 100%;
   }
 }
+
+.not-allowed{
+cursor: not-allowed;
+}
